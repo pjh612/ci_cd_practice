@@ -11,7 +11,7 @@ echo "> cp $REPOSITORY/deploy/*.jar $REPOSITORY/"
 cp $REPOSITORY/deploy/*.jar $REPOSITORY/
 
 # ✨ 이 부분이 안되면 명령어 실행해보시고, jar 파일의 PID를 가져올 수 있도록 변경해주세요.
-CURRENT_PID=$(sudo lsof -t -i:8080)
+CURRENT_PID=$(lsof -t -i:8080)
 
 echo "현재 구동 중인 애플리케이션 pid: $CURRENT_PID"
 
@@ -19,7 +19,7 @@ echo "현재 구동 중인 애플리케이션 pid: $CURRENT_PID"
 if [ -z "$CURRENT_PID" ]; then
   echo "> 현재 구동 중인 애플리케이션이 없으므로 종료하지 않습니다."
 else
-  echo "> sudo kill -15 $CURRENT_PID"
+  echo "> kill -15 $CURRENT_PID"
   kill -15 $CURRENT_PID
   sleep 5
 fi
@@ -36,5 +36,4 @@ chmod +x $JAR_NAME
 echo "> $JAR_NAME 실행"
 
 
-sudo nohup java -jar \
-    $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
+sudo nohup java -jar $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
