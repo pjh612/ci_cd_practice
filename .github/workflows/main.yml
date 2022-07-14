@@ -63,9 +63,9 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEPLOY_SECRET_ACCESS_KEY }}
       run: |
         aws deploy create-deployment \
-        --application-name instakyuram-api2 \
-        --deployment-group-name instakyuram-deploy-group \
+        --application-name practice \
+        --deployment-group-name practice-group \
         --file-exists-behavior OVERWRITE \
-        --s3-location bucket=springboot-intro-build,bundleType=zip,key=practice.zip \
+        --s3-location bucket=instakyuram-build-artifacts,bundleType=zip,key=practice.zip \
         --region ap-northeast-2
       
